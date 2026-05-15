@@ -18,7 +18,7 @@ class TeachingHonorResource extends Resource
 {
     protected static ?string $model = TeachingHonor::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Honor Mengajar';
 

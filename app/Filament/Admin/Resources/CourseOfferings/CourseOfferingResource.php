@@ -20,7 +20,7 @@ class CourseOfferingResource extends Resource
 {
     protected static ?string $model = CourseOffering::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Penawaran MK';
 

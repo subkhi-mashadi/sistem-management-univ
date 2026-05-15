@@ -18,7 +18,7 @@ class ErpNotificationResource extends Resource
 {
     protected static ?string $model = ErpNotification::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Komunikasi';
+    protected static string|\UnitEnum|null $navigationGroup = 'Komunikasi';
 
     protected static ?string $navigationLabel = 'Notifikasi';
 

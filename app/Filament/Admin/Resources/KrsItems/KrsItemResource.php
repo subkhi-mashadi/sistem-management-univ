@@ -18,7 +18,7 @@ class KrsItemResource extends Resource
 {
     protected static ?string $model = KrsItem::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'KRS & Nilai';
+    protected static string|\UnitEnum|null $navigationGroup = 'KRS & Nilai';
 
     protected static ?string $navigationLabel = 'Item KRS';
 

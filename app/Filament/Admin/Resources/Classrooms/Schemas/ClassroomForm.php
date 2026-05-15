@@ -6,6 +6,7 @@ use App\Enums\Academic\RoomType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ClassroomForm
@@ -14,30 +15,36 @@ class ClassroomForm
     {
         return $schema
             ->components([
-                TextInput::make('code')
-                    ->label('Kode')
-                    ->required(),
-                TextInput::make('name')
-                    ->label('Nama')
-                    ->required(),
-                TextInput::make('building')
-                    ->label('Gedung'),
-                TextInput::make('floor')
-                    ->label('Lantai'),
-                TextInput::make('capacity')
-                    ->label('Kapasitas')
-                    ->required()
-                    ->numeric(),
-                Select::make('room_type')
-                    ->label('Tipe Ruangan')
-                    ->options(RoomType::class)
-                    ->default('Kelas')
-                    ->required(),
-                TextInput::make('facilities')
-                    ->label('Fasilitas'),
-                Toggle::make('is_active')
-                    ->label('Aktif')
-                    ->required(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        TextInput::make('code')
+                            ->label('Kode')
+                            ->placeholder('Auto-generate')
+                            ->disabled()
+                            ->dehydrated(false),
+                        TextInput::make('name')
+                            ->label('Nama')
+                            ->required(),
+                        TextInput::make('building')
+                            ->label('Gedung'),
+                        TextInput::make('floor')
+                            ->label('Lantai'),
+                        TextInput::make('capacity')
+                            ->label('Kapasitas')
+                            ->required()
+                            ->numeric(),
+                        Select::make('room_type')
+                            ->label('Tipe Ruangan')
+                            ->options(RoomType::class)
+                            ->default('Kelas')
+                            ->required(),
+                        TextInput::make('facilities')
+                            ->label('Fasilitas'),
+                        Toggle::make('is_active')
+                            ->label('Aktif')
+                            ->required(),
+                    ]),
             ]);
     }
 }

@@ -20,7 +20,7 @@ class LetterRequestResource extends Resource
 {
     protected static ?string $model = LetterRequest::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'E-Office';
+    protected static string|\UnitEnum|null $navigationGroup = 'E-Office';
 
     protected static ?string $navigationLabel = 'Pengajuan Surat';
 

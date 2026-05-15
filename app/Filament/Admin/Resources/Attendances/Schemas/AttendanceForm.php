@@ -7,6 +7,7 @@ use App\Enums\Scheduling\CheckMethod;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class AttendanceForm
@@ -15,26 +16,30 @@ class AttendanceForm
     {
         return $schema
             ->components([
-                Select::make('class_session_id')
-                    ->label('Sesi Kelas')
-                    ->relationship('classSession', 'id')
-                    ->required(),
-                Select::make('student_id')
-                    ->label('Mahasiswa')
-                    ->relationship('student', 'id')
-                    ->required(),
-                Select::make('status')
-                    ->label('Status')
-                    ->options(AttendanceStatus::class)
-                    ->default('Hadir')
-                    ->required(),
-                Select::make('check_method')
-                    ->label('Metode Absensi')
-                    ->options(CheckMethod::class),
-                DateTimePicker::make('check_in_at')
-                    ->label('Waktu Absen'),
-                TextInput::make('notes')
-                    ->label('Catatan'),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        Select::make('class_session_id')
+                            ->label('Sesi Kelas')
+                            ->relationship('classSession', 'id')
+                            ->required(),
+                        Select::make('student_id')
+                            ->label('Mahasiswa')
+                            ->relationship('student', 'id')
+                            ->required(),
+                        Select::make('status')
+                            ->label('Status')
+                            ->options(AttendanceStatus::class)
+                            ->default('Hadir')
+                            ->required(),
+                        Select::make('check_method')
+                            ->label('Metode Absensi')
+                            ->options(CheckMethod::class),
+                        DateTimePicker::make('check_in_at')
+                            ->label('Waktu Absen'),
+                        TextInput::make('notes')
+                            ->label('Catatan'),
+                    ]),
             ]);
     }
 }

@@ -18,7 +18,7 @@ class ScheduleResource extends Resource
 {
     protected static ?string $model = Schedule::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Penjadwalan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Penjadwalan';
 
     protected static ?string $navigationLabel = 'Jadwal';
 

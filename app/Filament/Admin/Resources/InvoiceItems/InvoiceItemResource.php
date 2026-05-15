@@ -18,7 +18,7 @@ class InvoiceItemResource extends Resource
 {
     protected static ?string $model = InvoiceItem::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Item Invoice';
 

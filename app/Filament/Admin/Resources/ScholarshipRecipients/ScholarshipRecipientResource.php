@@ -18,7 +18,7 @@ class ScholarshipRecipientResource extends Resource
 {
     protected static ?string $model = ScholarshipRecipient::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Penerima Beasiswa';
 

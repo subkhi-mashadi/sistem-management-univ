@@ -20,7 +20,7 @@ class ThesisTopicResource extends Resource
 {
     protected static ?string $model = ThesisTopic::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Topik Skripsi';
 

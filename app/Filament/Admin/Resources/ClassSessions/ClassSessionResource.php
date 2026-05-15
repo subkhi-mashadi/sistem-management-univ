@@ -18,7 +18,7 @@ class ClassSessionResource extends Resource
 {
     protected static ?string $model = ClassSession::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Penjadwalan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Penjadwalan';
 
     protected static ?string $navigationLabel = 'Sesi Kelas';
 

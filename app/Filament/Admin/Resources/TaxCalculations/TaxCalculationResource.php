@@ -18,7 +18,7 @@ class TaxCalculationResource extends Resource
 {
     protected static ?string $model = TaxCalculation::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Kalkulasi Pajak';
 

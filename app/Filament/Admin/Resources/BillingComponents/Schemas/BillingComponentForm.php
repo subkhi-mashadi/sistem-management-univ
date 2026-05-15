@@ -4,9 +4,10 @@ namespace App\Filament\Admin\Resources\BillingComponents\Schemas;
 
 use App\Enums\Finance\BillingComponentType;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class BillingComponentForm
@@ -15,25 +16,31 @@ class BillingComponentForm
     {
         return $schema
             ->components([
-                TextInput::make('code')
-                    ->label('Kode')
-                    ->required(),
-                TextInput::make('name')
-                    ->label('Nama')
-                    ->required(),
-                Select::make('type')
-                    ->label('Tipe')
-                    ->options(BillingComponentType::class)
-                    ->required(),
-                Toggle::make('is_recurring')
-                    ->label('Berulang')
-                    ->required(),
-                Textarea::make('description')
-                    ->label('Deskripsi')
-                    ->columnSpanFull(),
-                Toggle::make('is_active')
-                    ->label('Aktif')
-                    ->required(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        TextInput::make('code')
+                            ->label('Kode')
+                            ->placeholder('Auto-generate')
+                            ->disabled()
+                            ->dehydrated(false),
+                        TextInput::make('name')
+                            ->label('Nama')
+                            ->required(),
+                        Select::make('type')
+                            ->label('Tipe')
+                            ->options(BillingComponentType::class)
+                            ->required(),
+                        Toggle::make('is_recurring')
+                            ->label('Berulang')
+                            ->required(),
+                        Textarea::make('description')
+                            ->label('Deskripsi')
+                            ->columnSpanFull(),
+                        Toggle::make('is_active')
+                            ->label('Aktif')
+                            ->required(),
+                    ]),
             ]);
     }
 }

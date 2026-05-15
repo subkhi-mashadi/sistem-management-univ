@@ -18,7 +18,7 @@ class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Pembayaran';
 

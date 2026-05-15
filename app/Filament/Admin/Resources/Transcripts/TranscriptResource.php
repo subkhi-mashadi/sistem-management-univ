@@ -18,7 +18,7 @@ class TranscriptResource extends Resource
 {
     protected static ?string $model = Transcript::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'KRS & Nilai';
+    protected static string|\UnitEnum|null $navigationGroup = 'KRS & Nilai';
 
     protected static ?string $navigationLabel = 'Transkrip';
 

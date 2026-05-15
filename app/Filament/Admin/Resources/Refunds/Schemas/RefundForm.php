@@ -6,8 +6,9 @@ use App\Enums\Finance\RefundReason;
 use App\Enums\Finance\RefundStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class RefundForm
@@ -16,41 +17,45 @@ class RefundForm
     {
         return $schema
             ->components([
-                TextInput::make('refund_number')
-                    ->label('Nomor Refund')
-                    ->required(),
-                Select::make('payment_id')
-                    ->label('Pembayaran')
-                    ->relationship('payment', 'id'),
-                Select::make('student_id')
-                    ->label('Mahasiswa')
-                    ->relationship('student', 'id')
-                    ->required(),
-                TextInput::make('amount')
-                    ->label('Jumlah')
-                    ->required()
-                    ->numeric(),
-                Select::make('reason')
-                    ->label('Alasan')
-                    ->options(RefundReason::class)
-                    ->required(),
-                Select::make('status')
-                    ->label('Status')
-                    ->options(RefundStatus::class)
-                    ->default('Requested')
-                    ->required(),
-                TextInput::make('approved_by')
-                    ->label('Disetujui Oleh')
-                    ->numeric(),
-                DateTimePicker::make('approved_at')
-                    ->label('Tanggal Disetujui'),
-                DateTimePicker::make('disbursed_at')
-                    ->label('Tanggal Pencairan'),
-                TextInput::make('bank_account')
-                    ->label('Nomor Rekening'),
-                Textarea::make('notes')
-                    ->label('Catatan')
-                    ->columnSpanFull(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        TextInput::make('refund_number')
+                            ->label('Nomor Refund')
+                            ->required(),
+                        Select::make('payment_id')
+                            ->label('Pembayaran')
+                            ->relationship('payment', 'id'),
+                        Select::make('student_id')
+                            ->label('Mahasiswa')
+                            ->relationship('student', 'id')
+                            ->required(),
+                        TextInput::make('amount')
+                            ->label('Jumlah')
+                            ->required()
+                            ->numeric(),
+                        Select::make('reason')
+                            ->label('Alasan')
+                            ->options(RefundReason::class)
+                            ->required(),
+                        Select::make('status')
+                            ->label('Status')
+                            ->options(RefundStatus::class)
+                            ->default('Requested')
+                            ->required(),
+                        TextInput::make('approved_by')
+                            ->label('Disetujui Oleh')
+                            ->numeric(),
+                        DateTimePicker::make('approved_at')
+                            ->label('Tanggal Disetujui'),
+                        DateTimePicker::make('disbursed_at')
+                            ->label('Tanggal Pencairan'),
+                        TextInput::make('bank_account')
+                            ->label('Nomor Rekening'),
+                        Textarea::make('notes')
+                            ->label('Catatan')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

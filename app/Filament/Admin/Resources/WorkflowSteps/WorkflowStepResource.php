@@ -18,7 +18,7 @@ class WorkflowStepResource extends Resource
 {
     protected static ?string $model = WorkflowStep::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'E-Office';
+    protected static string|\UnitEnum|null $navigationGroup = 'E-Office';
 
     protected static ?string $navigationLabel = 'Step Workflow';
 

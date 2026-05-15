@@ -20,7 +20,7 @@ class ScholarshipResource extends Resource
 {
     protected static ?string $model = Scholarship::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Beasiswa';
 

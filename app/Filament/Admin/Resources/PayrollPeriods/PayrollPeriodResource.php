@@ -18,7 +18,7 @@ class PayrollPeriodResource extends Resource
 {
     protected static ?string $model = PayrollPeriod::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Periode Payroll';
 

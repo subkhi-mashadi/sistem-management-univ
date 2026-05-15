@@ -20,7 +20,7 @@ class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Mahasiswa';
 

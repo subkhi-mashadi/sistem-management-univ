@@ -18,7 +18,7 @@ class ThesisAdvisorResource extends Resource
 {
     protected static ?string $model = ThesisAdvisor::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Pembimbing Skripsi';
 

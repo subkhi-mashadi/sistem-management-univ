@@ -12,6 +12,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\Activitylog\Models\Activity;
 
 class ActivityLogsTable
 {
@@ -55,7 +56,7 @@ class ActivityLogsTable
             ])
             ->filters([
                 SelectFilter::make('log_name')
-                    ->options(fn () => \Spatie\Activitylog\Models\Activity::query()
+                    ->options(fn () => Activity::query()
                         ->distinct()
                         ->whereNotNull('log_name')
                         ->pluck('log_name', 'log_name')

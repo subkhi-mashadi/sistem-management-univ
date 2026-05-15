@@ -18,7 +18,7 @@ class LogbookResource extends Resource
 {
     protected static ?string $model = Logbook::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Logbook Bimbingan';
 

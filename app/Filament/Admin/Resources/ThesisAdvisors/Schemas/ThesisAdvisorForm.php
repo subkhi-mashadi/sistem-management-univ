@@ -6,6 +6,7 @@ use App\Enums\Thesis\ThesisAdvisorStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ThesisAdvisorForm
@@ -14,26 +15,30 @@ class ThesisAdvisorForm
     {
         return $schema
             ->components([
-                Select::make('thesis_topic_id')
-                    ->label('Topik Skripsi')
-                    ->relationship('thesisTopic', 'title')
-                    ->required(),
-                Select::make('lecturer_id')
-                    ->label('Dosen')
-                    ->relationship('lecturer', 'id')
-                    ->required(),
-                TextInput::make('advisor_order')
-                    ->label('Urutan Pembimbing')
-                    ->required()
-                    ->numeric(),
-                DateTimePicker::make('assigned_at')
-                    ->label('Ditugaskan')
-                    ->required(),
-                Select::make('status')
-                    ->label('Status')
-                    ->options(ThesisAdvisorStatus::class)
-                    ->default('Active')
-                    ->required(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        Select::make('thesis_topic_id')
+                            ->label('Topik Skripsi')
+                            ->relationship('thesisTopic', 'title')
+                            ->required(),
+                        Select::make('lecturer_id')
+                            ->label('Dosen')
+                            ->relationship('lecturer', 'id')
+                            ->required(),
+                        TextInput::make('advisor_order')
+                            ->label('Urutan Pembimbing')
+                            ->required()
+                            ->numeric(),
+                        DateTimePicker::make('assigned_at')
+                            ->label('Ditugaskan')
+                            ->required(),
+                        Select::make('status')
+                            ->label('Status')
+                            ->options(ThesisAdvisorStatus::class)
+                            ->default('Active')
+                            ->required(),
+                    ]),
             ]);
     }
 }

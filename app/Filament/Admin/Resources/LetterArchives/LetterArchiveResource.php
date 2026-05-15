@@ -18,7 +18,7 @@ class LetterArchiveResource extends Resource
 {
     protected static ?string $model = LetterArchive::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'E-Office';
+    protected static string|\UnitEnum|null $navigationGroup = 'E-Office';
 
     protected static ?string $navigationLabel = 'Arsip Surat';
 

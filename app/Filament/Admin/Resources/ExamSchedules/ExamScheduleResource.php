@@ -18,7 +18,7 @@ class ExamScheduleResource extends Resource
 {
     protected static ?string $model = ExamSchedule::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Penjadwalan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Penjadwalan';
 
     protected static ?string $navigationLabel = 'Jadwal Ujian';
 

@@ -5,9 +5,10 @@ namespace App\Filament\Admin\Resources\SalaryComponents\Schemas;
 use App\Enums\Hris\CalculationType;
 use App\Enums\Hris\SalaryComponentType;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class SalaryComponentForm
@@ -16,29 +17,35 @@ class SalaryComponentForm
     {
         return $schema
             ->components([
-                TextInput::make('code')
-                    ->label('Kode')
-                    ->required(),
-                TextInput::make('name')
-                    ->label('Nama')
-                    ->required(),
-                Select::make('type')
-                    ->label('Tipe')
-                    ->options(SalaryComponentType::class)
-                    ->required(),
-                Select::make('calculation_type')
-                    ->label('Tipe Kalkulasi')
-                    ->options(CalculationType::class)
-                    ->required(),
-                Textarea::make('formula')
-                    ->label('Formula')
-                    ->columnSpanFull(),
-                Toggle::make('is_taxable')
-                    ->label('Kena Pajak')
-                    ->required(),
-                Toggle::make('is_active')
-                    ->label('Aktif')
-                    ->required(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        TextInput::make('code')
+                            ->label('Kode')
+                            ->placeholder('Auto-generate')
+                            ->disabled()
+                            ->dehydrated(false),
+                        TextInput::make('name')
+                            ->label('Nama')
+                            ->required(),
+                        Select::make('type')
+                            ->label('Tipe')
+                            ->options(SalaryComponentType::class)
+                            ->required(),
+                        Select::make('calculation_type')
+                            ->label('Tipe Kalkulasi')
+                            ->options(CalculationType::class)
+                            ->required(),
+                        Textarea::make('formula')
+                            ->label('Formula')
+                            ->columnSpanFull(),
+                        Toggle::make('is_taxable')
+                            ->label('Kena Pajak')
+                            ->required(),
+                        Toggle::make('is_active')
+                            ->label('Aktif')
+                            ->required(),
+                    ]),
             ]);
     }
 }

@@ -20,7 +20,7 @@ class ResearchRepositoryResource extends Resource
 {
     protected static ?string $model = ResearchRepository::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Repository Riset';
 

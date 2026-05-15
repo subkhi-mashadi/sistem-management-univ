@@ -20,7 +20,7 @@ class StudyProgramResource extends Resource
 {
     protected static ?string $model = StudyProgram::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Program Studi';
 

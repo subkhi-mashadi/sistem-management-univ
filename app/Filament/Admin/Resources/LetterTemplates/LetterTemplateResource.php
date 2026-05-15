@@ -20,7 +20,7 @@ class LetterTemplateResource extends Resource
 {
     protected static ?string $model = LetterTemplate::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'E-Office';
+    protected static string|\UnitEnum|null $navigationGroup = 'E-Office';
 
     protected static ?string $navigationLabel = 'Template Surat';
 

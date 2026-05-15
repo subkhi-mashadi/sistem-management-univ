@@ -18,7 +18,7 @@ class BillingRateResource extends Resource
 {
     protected static ?string $model = BillingRate::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Tarif Tagihan';
 

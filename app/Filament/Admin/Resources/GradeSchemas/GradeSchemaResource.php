@@ -18,7 +18,7 @@ class GradeSchemaResource extends Resource
 {
     protected static ?string $model = GradeSchema::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Skema Nilai';
 

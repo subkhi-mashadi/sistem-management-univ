@@ -18,7 +18,7 @@ class AcademicCalendarResource extends Resource
 {
     protected static ?string $model = AcademicCalendar::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Kalender Akademik';
 

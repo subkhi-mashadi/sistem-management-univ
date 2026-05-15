@@ -18,7 +18,7 @@ class AttendanceRecordResource extends Resource
 {
     protected static ?string $model = AttendanceRecord::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Presensi Pegawai';
 

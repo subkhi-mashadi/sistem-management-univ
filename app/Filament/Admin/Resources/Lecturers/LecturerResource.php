@@ -20,7 +20,7 @@ class LecturerResource extends Resource
 {
     protected static ?string $model = Lecturer::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Dosen';
 

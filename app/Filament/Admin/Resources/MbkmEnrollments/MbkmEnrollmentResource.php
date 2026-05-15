@@ -18,7 +18,7 @@ class MbkmEnrollmentResource extends Resource
 {
     protected static ?string $model = MbkmEnrollment::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Pendaftaran MBKM';
 

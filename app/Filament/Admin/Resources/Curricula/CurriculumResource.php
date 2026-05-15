@@ -20,7 +20,7 @@ class CurriculumResource extends Resource
 {
     protected static ?string $model = Curriculum::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Kurikulum';
 

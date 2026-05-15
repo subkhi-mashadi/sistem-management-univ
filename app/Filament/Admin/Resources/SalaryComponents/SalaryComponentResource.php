@@ -18,7 +18,7 @@ class SalaryComponentResource extends Resource
 {
     protected static ?string $model = SalaryComponent::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Komponen Gaji';
 

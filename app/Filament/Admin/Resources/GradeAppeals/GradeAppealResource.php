@@ -18,7 +18,7 @@ class GradeAppealResource extends Resource
 {
     protected static ?string $model = GradeAppeal::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'KRS & Nilai';
+    protected static string|\UnitEnum|null $navigationGroup = 'KRS & Nilai';
 
     protected static ?string $navigationLabel = 'Sanggah Nilai';
 

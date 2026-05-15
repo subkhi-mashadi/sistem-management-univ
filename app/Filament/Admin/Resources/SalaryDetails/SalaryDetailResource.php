@@ -18,7 +18,7 @@ class SalaryDetailResource extends Resource
 {
     protected static ?string $model = SalaryDetail::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'SDM & Payroll';
+    protected static string|\UnitEnum|null $navigationGroup = 'SDM & Payroll';
 
     protected static ?string $navigationLabel = 'Detail Gaji';
 

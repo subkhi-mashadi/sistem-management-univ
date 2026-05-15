@@ -20,7 +20,7 @@ class BillingComponentResource extends Resource
 {
     protected static ?string $model = BillingComponent::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Komponen Tagihan';
 

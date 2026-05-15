@@ -2,9 +2,10 @@
 
 namespace App\Filament\Admin\Resources\Workflows\Schemas;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class WorkflowForm
@@ -13,21 +14,27 @@ class WorkflowForm
     {
         return $schema
             ->components([
-                TextInput::make('code')
-                    ->label('Kode')
-                    ->required(),
-                TextInput::make('name')
-                    ->label('Nama')
-                    ->required(),
-                Textarea::make('description')
-                    ->label('Deskripsi')
-                    ->columnSpanFull(),
-                TextInput::make('entity_type')
-                    ->label('Tipe Entitas')
-                    ->required(),
-                Toggle::make('is_active')
-                    ->label('Aktif')
-                    ->required(),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        TextInput::make('code')
+                            ->label('Kode')
+                            ->placeholder('Auto-generate')
+                            ->disabled()
+                            ->dehydrated(false),
+                        TextInput::make('name')
+                            ->label('Nama')
+                            ->required(),
+                        Textarea::make('description')
+                            ->label('Deskripsi')
+                            ->columnSpanFull(),
+                        TextInput::make('entity_type')
+                            ->label('Tipe Entitas')
+                            ->required(),
+                        Toggle::make('is_active')
+                            ->label('Aktif')
+                            ->required(),
+                    ]),
             ]);
     }
 }

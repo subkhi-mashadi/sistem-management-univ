@@ -18,7 +18,7 @@ class NotificationTemplateResource extends Resource
 {
     protected static ?string $model = NotificationTemplate::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Komunikasi';
+    protected static string|\UnitEnum|null $navigationGroup = 'Komunikasi';
 
     protected static ?string $navigationLabel = 'Template Notifikasi';
 

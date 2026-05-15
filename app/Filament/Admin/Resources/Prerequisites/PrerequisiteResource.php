@@ -18,7 +18,7 @@ class PrerequisiteResource extends Resource
 {
     protected static ?string $model = Prerequisite::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Prasyarat MK';
 

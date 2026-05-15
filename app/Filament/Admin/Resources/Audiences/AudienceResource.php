@@ -20,7 +20,7 @@ class AudienceResource extends Resource
 {
     protected static ?string $model = Audience::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Komunikasi';
+    protected static string|\UnitEnum|null $navigationGroup = 'Komunikasi';
 
     protected static ?string $navigationLabel = 'Segmen Audiens';
 

@@ -18,7 +18,7 @@ class DeliveryLogResource extends Resource
 {
     protected static ?string $model = DeliveryLog::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Komunikasi';
+    protected static string|\UnitEnum|null $navigationGroup = 'Komunikasi';
 
     protected static ?string $navigationLabel = 'Log Pengiriman';
 

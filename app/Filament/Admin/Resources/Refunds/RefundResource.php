@@ -20,7 +20,7 @@ class RefundResource extends Resource
 {
     protected static ?string $model = Refund::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Refund';
 

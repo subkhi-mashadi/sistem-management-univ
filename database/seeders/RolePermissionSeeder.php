@@ -37,6 +37,7 @@ class RolePermissionSeeder extends Seeder
         $this->grantDekan();
         $this->grantKaprodi();
         $this->grantDosen();
+        $this->grantMahasiswa();
         $this->grantAdminAkademik();
         $this->grantAdminKeuangan();
         $this->grantAdminSdm();
@@ -89,6 +90,18 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         Role::firstWhere('name', RoleEnum::Kaprodi->value)?->syncPermissions($perms);
+    }
+
+    private function grantMahasiswa(): void
+    {
+        $perms = $this->permissionsFor([
+            [PermissionModule::Krs, [PermissionAction::View, PermissionAction::Create, PermissionAction::Edit]],
+            [PermissionModule::Finance, [PermissionAction::View]],
+            [PermissionModule::EOffice, [PermissionAction::View, PermissionAction::Create]],
+            [PermissionModule::Thesis, [PermissionAction::View, PermissionAction::Create]],
+        ]);
+
+        Role::firstWhere('name', RoleEnum::Mahasiswa->value)?->syncPermissions($perms);
     }
 
     private function grantDosen(): void

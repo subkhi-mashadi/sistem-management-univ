@@ -7,6 +7,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ExamScheduleForm
@@ -15,28 +16,32 @@ class ExamScheduleForm
     {
         return $schema
             ->components([
-                Select::make('course_offering_id')
-                    ->label('Penawaran MK')
-                    ->relationship('courseOffering', 'id')
-                    ->required(),
-                Select::make('classroom_id')
-                    ->label('Ruang Kelas')
-                    ->relationship('classroom', 'name'),
-                Select::make('exam_type')
-                    ->label('Jenis Ujian')
-                    ->options(ExamType::class)
-                    ->required(),
-                DatePicker::make('exam_date')
-                    ->label('Tanggal Ujian')
-                    ->required(),
-                TimePicker::make('start_time')
-                    ->label('Jam Mulai')
-                    ->required(),
-                TimePicker::make('end_time')
-                    ->label('Jam Selesai')
-                    ->required(),
-                TextInput::make('proctor_ids')
-                    ->label('Pengawas'),
+                Section::make('Informasi Utama')
+                    ->columnSpanFull()
+                    ->columns(2)->components([
+                        Select::make('course_offering_id')
+                            ->label('Penawaran MK')
+                            ->relationship('courseOffering', 'id')
+                            ->required(),
+                        Select::make('classroom_id')
+                            ->label('Ruang Kelas')
+                            ->relationship('classroom', 'name'),
+                        Select::make('exam_type')
+                            ->label('Jenis Ujian')
+                            ->options(ExamType::class)
+                            ->required(),
+                        DatePicker::make('exam_date')
+                            ->label('Tanggal Ujian')
+                            ->required(),
+                        TimePicker::make('start_time')
+                            ->label('Jam Mulai')
+                            ->required(),
+                        TimePicker::make('end_time')
+                            ->label('Jam Selesai')
+                            ->required(),
+                        TextInput::make('proctor_ids')
+                            ->label('Pengawas'),
+                    ]),
             ]);
     }
 }

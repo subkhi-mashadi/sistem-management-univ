@@ -6,6 +6,7 @@ use App\Concerns\HasAuditable;
 use App\Enums\Academic\EducationLevel;
 use App\Enums\Academic\EmploymentStatus;
 use App\Enums\Academic\FunctionalPosition;
+use App\Enums\Academic\StructuralPosition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +38,7 @@ class Lecturer extends Model
 
     protected $casts = [
         'functional_position' => FunctionalPosition::class,
+        'structural_position' => StructuralPosition::class,
         'education_level' => EducationLevel::class,
         'employment_status' => EmploymentStatus::class,
         'expertise_keywords' => 'array',

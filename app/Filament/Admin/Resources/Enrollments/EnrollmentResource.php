@@ -20,7 +20,7 @@ class EnrollmentResource extends Resource
 {
     protected static ?string $model = Enrollment::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'KRS & Nilai';
+    protected static string|\UnitEnum|null $navigationGroup = 'KRS & Nilai';
 
     protected static ?string $navigationLabel = 'KRS';
 

@@ -18,7 +18,7 @@ class FineResource extends Resource
 {
     protected static ?string $model = Fine::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Keuangan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Keuangan';
 
     protected static ?string $navigationLabel = 'Denda';
 

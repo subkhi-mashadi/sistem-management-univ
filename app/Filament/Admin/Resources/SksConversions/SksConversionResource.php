@@ -18,7 +18,7 @@ class SksConversionResource extends Resource
 {
     protected static ?string $model = SksConversion::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Tugas Akhir & MBKM';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tugas Akhir & MBKM';
 
     protected static ?string $navigationLabel = 'Konversi SKS';
 

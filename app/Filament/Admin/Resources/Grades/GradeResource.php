@@ -18,7 +18,7 @@ class GradeResource extends Resource
 {
     protected static ?string $model = Grade::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'KRS & Nilai';
+    protected static string|\UnitEnum|null $navigationGroup = 'KRS & Nilai';
 
     protected static ?string $navigationLabel = 'Nilai';
 

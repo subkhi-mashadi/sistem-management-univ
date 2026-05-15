@@ -14,7 +14,7 @@ class ActivityLogResource extends Resource
 {
     protected static ?string $model = Activity::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Pengaturan Sistem';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pengaturan Sistem';
 
     protected static ?string $navigationLabel = 'Audit Log';
 

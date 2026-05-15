@@ -18,7 +18,7 @@ class SemesterResource extends Resource
 {
     protected static ?string $model = Semester::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Akademik';
+    protected static string|\UnitEnum|null $navigationGroup = 'Akademik';
 
     protected static ?string $navigationLabel = 'Semester';
 

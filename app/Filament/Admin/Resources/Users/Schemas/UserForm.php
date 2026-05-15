@@ -20,8 +20,8 @@ class UserForm
         return $schema
             ->components([
                 Section::make('Identitas')
-                    ->columns(2)
-                    ->components([
+                    ->columnSpanFull()
+                    ->columns(2)->components([
                         TextInput::make('username')
                             ->label('Username')
                             ->unique(ignoreRecord: true)
@@ -52,6 +52,7 @@ class UserForm
                     ]),
 
                 Section::make('Roles & Permissions')
+                    ->columnSpanFull()
                     ->components([
                         Select::make('roles')
                             ->label('Role')
@@ -63,8 +64,8 @@ class UserForm
                     ]),
 
                 Section::make('Keamanan')
-                    ->columns(2)
-                    ->components([
+                    ->columnSpanFull()
+                    ->columns(2)->components([
                         TextInput::make('password')
                             ->label('Password')
                             ->password()

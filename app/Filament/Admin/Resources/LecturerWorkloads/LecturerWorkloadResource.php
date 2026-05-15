@@ -18,7 +18,7 @@ class LecturerWorkloadResource extends Resource
 {
     protected static ?string $model = LecturerWorkload::class;
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Penjadwalan';
+    protected static string|\UnitEnum|null $navigationGroup = 'Penjadwalan';
 
     protected static ?string $navigationLabel = 'Beban Kerja Dosen';
 
