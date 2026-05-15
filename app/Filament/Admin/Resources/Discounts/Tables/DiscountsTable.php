@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Filament\Admin\Resources\Discounts\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class DiscountsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('invoice.id')
+                    ->label('Invoice')
+                    ->searchable(),
+                TextColumn::make('code')
+                    ->label('Kode')
+                    ->searchable(),
+                TextColumn::make('reason')
+                    ->label('Alasan')
+                    ->searchable(),
+                TextColumn::make('amount')
+                    ->label('Jumlah')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('approved_by')
+                    ->label('Disetujui Oleh')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('approved_at')
+                    ->label('Tanggal Disetujui')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->label('Diperbarui')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
