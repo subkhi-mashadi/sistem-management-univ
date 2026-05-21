@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\Schedules\Schemas;
 
 use App\Enums\Scheduling\DayOfWeek;
+use App\Models\CourseOffering;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
@@ -20,11 +21,24 @@ class ScheduleForm
                     ->columns(2)->components([
                         Select::make('course_offering_id')
                             ->label('Penawaran MK')
-                            ->relationship('courseOffering', 'class_code')->searchable()->preload()
-                            ->required(),
+                            ->options(fn () => CourseOffering::query()
+                                ->with(['course:id,code,name', 'semester:id,name'])
+                                ->whereHas('semester', fn ($q) => $q->where('is_active', true))
+                                ->get()
+                                ->mapWithKeys(fn (CourseOffering $o) => [
+                                    $o->id => ($o->course?->code ?? '?').' — '.($o->course?->name ?? 'MK #'.$o->course_id).' (Kelas '.$o->class_code.')',
+                                ])
+                                ->all())
+                            ->searchable()
+                            ->preload()
+                            ->required()
+                            ->helperText('Hanya menampilkan Penawaran MK dari Semester aktif.')
+                            ->columnSpanFull(),
                         Select::make('classroom_id')
                             ->label('Ruang Kelas')
-                            ->relationship('classroom', 'name'),
+                            ->relationship('classroom', 'name')
+                            ->searchable()
+                            ->preload(),
                         Select::make('day_of_week')
                             ->label('Hari')
                             ->options(DayOfWeek::class)
@@ -39,6 +53,7 @@ class ScheduleForm
                             ->label('Jumlah Pertemuan')
                             ->required()
                             ->numeric()
+                            ->minValue(1)
                             ->default(14),
                     ]),
             ]);

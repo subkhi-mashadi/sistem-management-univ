@@ -14,9 +14,18 @@ class SchedulesTable
     {
         return $table
             ->columns([
-                TextColumn::make('courseOffering.id')
-                    ->label('Penawaran MK')
-                    ->searchable(),
+                TextColumn::make('courseOffering.course.code')
+                    ->label('Kode MK')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('courseOffering.course.name')
+                    ->label('Mata Kuliah')
+                    ->searchable()
+                    ->wrap(),
+                TextColumn::make('courseOffering.class_code')
+                    ->label('Kelas')
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('classroom.name')
                     ->label('Ruang Kelas')
                     ->searchable(),
