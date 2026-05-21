@@ -18,10 +18,10 @@ class LogbooksTable
                 TextColumn::make('thesisTopic.title')
                     ->label('Topik Skripsi')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
-                TextColumn::make('lecturer.id')
+                TextColumn::make('lecturer.user.name')
                     ->label('Dosen')
                     ->searchable(),
                 TextColumn::make('session_date')

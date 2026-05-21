@@ -14,10 +14,10 @@ class GradeAppealsTable
     {
         return $table
             ->columns([
-                TextColumn::make('grade.id')
+                TextColumn::make('grade.courseOffering.course.code')
                     ->label('Nilai')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('original_letter')

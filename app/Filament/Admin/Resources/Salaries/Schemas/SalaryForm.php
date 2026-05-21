@@ -18,13 +18,13 @@ class SalaryForm
                 Section::make('Informasi Utama')
                     ->columnSpanFull()
                     ->columns(2)->components([
-                        TextInput::make('payroll_period_id')
+                        Select::make('payroll_period_id')
                             ->label('Periode Payroll')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('period', 'name')->searchable()->preload()
+                            ->required(),
                         Select::make('employee_id')
                             ->label('Pegawai')
-                            ->relationship('employee', 'id')
+                            ->relationship('employee', 'nip')->searchable()->preload()
                             ->required(),
                         TextInput::make('base_salary')
                             ->label('Gaji Pokok')

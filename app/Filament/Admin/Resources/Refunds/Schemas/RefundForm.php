@@ -25,10 +25,10 @@ class RefundForm
                             ->required(),
                         Select::make('payment_id')
                             ->label('Pembayaran')
-                            ->relationship('payment', 'id'),
+                            ->relationship('payment', 'payment_number')->searchable()->preload(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         TextInput::make('amount')
                             ->label('Jumlah')

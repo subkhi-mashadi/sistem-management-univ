@@ -14,7 +14,7 @@ class EmploymentHistoriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('employee.id')
+                TextColumn::make('employee.user.name')
                     ->label('Pegawai')
                     ->searchable(),
                 TextColumn::make('event_type')

@@ -28,9 +28,9 @@ class WorkflowStepForm
                         TextInput::make('name')
                             ->label('Nama')
                             ->required(),
-                        TextInput::make('approver_role_id')
+                        Select::make('approver_role_id')
                             ->label('Role Approver')
-                            ->numeric(),
+                            ->relationship('approverRole', 'name')->searchable()->preload(),
                         Select::make('approver_user_id')
                             ->label('User Approver')
                             ->relationship('approverUser', 'name'),

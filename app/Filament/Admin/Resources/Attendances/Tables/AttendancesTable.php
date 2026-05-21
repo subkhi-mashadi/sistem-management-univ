@@ -17,7 +17,7 @@ class AttendancesTable
                 TextColumn::make('classSession.id')
                     ->label('Sesi Kelas')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('status')

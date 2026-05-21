@@ -17,7 +17,7 @@ class ThesisTopicsTable
     {
         return $table
             ->columns([
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('title')

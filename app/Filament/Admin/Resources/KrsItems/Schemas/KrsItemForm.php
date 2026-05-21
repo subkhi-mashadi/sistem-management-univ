@@ -19,11 +19,11 @@ class KrsItemForm
                     ->columns(2)->components([
                         Select::make('enrollment_id')
                             ->label('KRS')
-                            ->relationship('enrollment', 'id')
+                            ->relationship('enrollment', 'id')->searchable()->preload()
                             ->required(),
                         Select::make('course_offering_id')
                             ->label('Penawaran MK')
-                            ->relationship('courseOffering', 'id')
+                            ->relationship('courseOffering', 'class_code')->searchable()->preload()
                             ->required(),
                         Select::make('status')
                             ->label('Status')

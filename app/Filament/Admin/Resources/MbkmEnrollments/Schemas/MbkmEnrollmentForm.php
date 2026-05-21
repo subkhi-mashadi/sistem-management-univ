@@ -18,13 +18,13 @@ class MbkmEnrollmentForm
                 Section::make('Informasi Utama')
                     ->columnSpanFull()
                     ->columns(2)->components([
-                        TextInput::make('mbkm_program_id')
+                        Select::make('mbkm_program_id')
                             ->label('Program MBKM')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('program', 'name')->searchable()->preload()
+                            ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Select::make('semester_id')
                             ->label('Semester')

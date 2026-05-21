@@ -14,7 +14,7 @@ class DeliveryLogsTable
     {
         return $table
             ->columns([
-                TextColumn::make('erp_notification_id')
+                TextColumn::make('notification.title')
                     ->label('Notifikasi')
                     ->numeric()
                     ->sortable(),

@@ -22,10 +22,10 @@ class ResearchRepositoryForm
                     ->columns(2)->components([
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id'),
+                            ->relationship('student', 'nim')->searchable()->preload(),
                         Select::make('lecturer_id')
                             ->label('Dosen')
-                            ->relationship('lecturer', 'id'),
+                            ->relationship('lecturer', 'nidn')->searchable()->preload(),
                         TextInput::make('title')
                             ->label('Judul')
                             ->required(),

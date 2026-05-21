@@ -15,7 +15,7 @@ class BillingRatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('billing_component_id')
+                TextColumn::make('component.name')
                     ->label('Komponen Tagihan')
                     ->numeric()
                     ->sortable(),

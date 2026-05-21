@@ -18,12 +18,12 @@ class SalaryDetailForm
                     ->columns(2)->components([
                         Select::make('salary_id')
                             ->label('Gaji')
-                            ->relationship('salary', 'id')
+                            ->relationship('salary', 'id')->searchable()->preload()
                             ->required(),
-                        TextInput::make('salary_component_id')
+                        Select::make('salary_component_id')
                             ->label('Komponen Gaji')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('component', 'name')->searchable()->preload()
+                            ->required(),
                         TextInput::make('amount')
                             ->label('Jumlah')
                             ->required()

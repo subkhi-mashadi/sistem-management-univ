@@ -25,7 +25,7 @@ class WorkflowStepsTable
                 TextColumn::make('name')
                     ->label('Nama')
                     ->searchable(),
-                TextColumn::make('approver_role_id')
+                TextColumn::make('approverRole.name')
                     ->label('Role Approver')
                     ->numeric()
                     ->sortable(),

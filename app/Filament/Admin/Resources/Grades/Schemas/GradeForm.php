@@ -20,15 +20,15 @@ class GradeForm
                     ->columns(2)->components([
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Select::make('course_offering_id')
                             ->label('Penawaran MK')
-                            ->relationship('courseOffering', 'id')
+                            ->relationship('courseOffering', 'class_code')->searchable()->preload()
                             ->required(),
                         Select::make('krs_item_id')
                             ->label('Item KRS')
-                            ->relationship('krsItem', 'id'),
+                            ->relationship('krsItem', 'id')->searchable()->preload(),
                         TextInput::make('attendance_score')
                             ->label('Nilai Kehadiran')
                             ->numeric(),

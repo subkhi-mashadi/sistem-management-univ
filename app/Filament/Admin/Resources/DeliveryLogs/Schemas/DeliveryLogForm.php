@@ -20,9 +20,9 @@ class DeliveryLogForm
                 Section::make('Informasi Utama')
                     ->columnSpanFull()
                     ->columns(2)->components([
-                        TextInput::make('erp_notification_id')
+                        Select::make('erp_notification_id')
                             ->label('Notifikasi')
-                            ->numeric(),
+                            ->relationship('notification', 'title')->searchable()->preload(),
                         Select::make('announcement_id')
                             ->label('Pengumuman')
                             ->relationship('announcement', 'title'),

@@ -14,7 +14,7 @@ class ClassSessionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('schedule.id')
+                TextColumn::make('schedule.courseOffering.course.name')
                     ->label('Jadwal')
                     ->searchable(),
                 TextColumn::make('meeting_number')

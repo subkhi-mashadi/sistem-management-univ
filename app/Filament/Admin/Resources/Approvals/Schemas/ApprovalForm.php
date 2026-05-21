@@ -21,12 +21,12 @@ class ApprovalForm
                     ->columns(2)->components([
                         Select::make('letter_request_id')
                             ->label('Pengajuan Surat')
-                            ->relationship('letterRequest', 'id')
+                            ->relationship('letterRequest', 'id')->searchable()->preload()
                             ->required(),
-                        TextInput::make('workflow_step_id')
+                        Select::make('workflow_step_id')
                             ->label('Step Workflow')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('step', 'name')->searchable()->preload()
+                            ->required(),
                         Select::make('approver_id')
                             ->label('Approver')
                             ->relationship('approver', 'name')

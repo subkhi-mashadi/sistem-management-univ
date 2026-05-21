@@ -18,10 +18,10 @@ class BillingRateForm
                 Section::make('Informasi Utama')
                     ->columnSpanFull()
                     ->columns(2)->components([
-                        TextInput::make('billing_component_id')
+                        Select::make('billing_component_id')
                             ->label('Komponen Tagihan')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('component', 'name')->searchable()->preload()
+                            ->required(),
                         Select::make('study_program_id')
                             ->label('Program Studi')
                             ->relationship('studyProgram', 'name'),

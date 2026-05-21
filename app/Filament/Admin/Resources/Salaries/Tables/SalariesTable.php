@@ -14,11 +14,11 @@ class SalariesTable
     {
         return $table
             ->columns([
-                TextColumn::make('payroll_period_id')
+                TextColumn::make('period.name')
                     ->label('Periode Payroll')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('employee.id')
+                TextColumn::make('employee.user.name')
                     ->label('Pegawai')
                     ->searchable(),
                 TextColumn::make('base_salary')

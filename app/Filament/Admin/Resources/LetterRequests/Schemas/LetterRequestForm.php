@@ -22,10 +22,10 @@ class LetterRequestForm
                     ->columns(2)->components([
                         TextInput::make('letter_number')
                             ->label('Nomor Surat'),
-                        TextInput::make('letter_template_id')
+                        Select::make('letter_template_id')
                             ->label('Template Surat')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('template', 'name')->searchable()->preload()
+                            ->required(),
                         Select::make('workflow_id')
                             ->label('Workflow')
                             ->relationship('workflow', 'name'),
@@ -35,7 +35,7 @@ class LetterRequestForm
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id'),
+                            ->relationship('student', 'nim')->searchable()->preload(),
                         TextInput::make('form_data')
                             ->label('Data Form')
                             ->required(),

@@ -5,11 +5,17 @@ namespace App\Filament\Admin\Resources\Students\Schemas;
 use App\Enums\Academic\EntryPath;
 use App\Enums\Academic\StudentStatus;
 use App\Enums\Common\Gender;
+use App\Enums\Common\Religion;
+use App\Models\Curriculum;
+use App\Models\Lecturer;
+use App\Models\UktGroup;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 
 class StudentForm
@@ -68,18 +74,52 @@ class StudentForm
                             ->relationship('studyProgram', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->live()
+                            ->afterStateUpdated(function (Set $set) {
+                                $set('curriculum_id', null);
+                                $set('academic_advisor_id', null);
+                            }),
                         Select::make('curriculum_id')
                             ->label('Kurikulum')
-                            ->relationship('curriculum', 'name')
+                            ->options(function (Get $get) {
+                                $prodiId = $get('study_program_id');
+                                if (! $prodiId) {
+                                    return [];
+                                }
+
+                                return Curriculum::query()
+                                    ->where('study_program_id', $prodiId)
+                                    ->where('is_active', true)
+                                    ->orderByDesc('effective_year')
+                                    ->pluck('name', 'id')
+                                    ->all();
+                            })
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->disabled(fn (Get $get) => ! $get('study_program_id')),
                         Select::make('academic_advisor_id')
                             ->label('Dosen Wali')
-                            ->relationship('advisor.user', 'full_name')
+                            ->options(function (Get $get) {
+                                $prodiId = $get('study_program_id');
+                                if (! $prodiId) {
+                                    return [];
+                                }
+
+                                return Lecturer::query()
+                                    ->where('study_program_id', $prodiId)
+                                    ->where('is_active', true)
+                                    ->with('user:id,full_name,name')
+                                    ->get()
+                                    ->mapWithKeys(fn (Lecturer $l) => [
+                                        $l->id => ($l->user?->full_name ?? $l->user?->name)
+                                    ])
+                                    ->all();
+                            })
                             ->searchable()
-                            ->preload(),
+                            ->preload()
+                            ->disabled(fn (Get $get) => ! $get('study_program_id')),
                         Select::make('status')
                             ->label('Status')
                             ->options(StudentStatus::options())
@@ -92,8 +132,15 @@ class StudentForm
                             ->native(false),
                         Select::make('ukt_group')
                             ->label('Golongan UKT')
-                            ->options(array_combine(range(1, 8), array_map(fn ($i) => "Golongan {$i}", range(1, 8))))
-                            ->native(false),
+                            ->options(fn () => UktGroup::query()
+                                ->where('is_active', true)
+                                ->orderBy('code')
+                                ->get()
+                                ->mapWithKeys(fn (UktGroup $g) => [$g->code => "{$g->code} — {$g->name}"])
+                                ->all())
+                            ->searchable()
+                            ->native(false)
+                            ->helperText('Daftar golongan dikelola di menu Keuangan › Golongan UKT.'),
                     ]),
 
                 Section::make('Biodata')
@@ -111,8 +158,11 @@ class StudentForm
                         TextInput::make('phone')
                             ->label('Telepon')
                             ->tel(),
-                        TextInput::make('religion')
-                            ->label('Agama'),
+                        Select::make('religion')
+                            ->label('Agama')
+                            ->options(Religion::options())
+                            ->native(false)
+                            ->searchable(),
                         TextInput::make('nationality')
                             ->label('Kewarganegaraan')
                             ->default('Indonesia'),

@@ -17,7 +17,7 @@ class ThesisAdvisorsTable
                 TextColumn::make('thesisTopic.title')
                     ->label('Topik Skripsi')
                     ->searchable(),
-                TextColumn::make('lecturer.id')
+                TextColumn::make('lecturer.user.name')
                     ->label('Dosen')
                     ->searchable(),
                 TextColumn::make('advisor_order')

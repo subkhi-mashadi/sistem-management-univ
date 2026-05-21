@@ -18,12 +18,12 @@ class InvoiceItemForm
                     ->columns(2)->components([
                         Select::make('invoice_id')
                             ->label('Invoice')
-                            ->relationship('invoice', 'id')
+                            ->relationship('invoice', 'invoice_number')->searchable()->preload()
                             ->required(),
-                        TextInput::make('billing_component_id')
+                        Select::make('billing_component_id')
                             ->label('Komponen Tagihan')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('component', 'name')->searchable()->preload()
+                            ->required(),
                         TextInput::make('description')
                             ->label('Deskripsi')
                             ->required(),

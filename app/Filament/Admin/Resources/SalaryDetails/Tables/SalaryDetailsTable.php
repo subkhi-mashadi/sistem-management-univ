@@ -14,10 +14,10 @@ class SalaryDetailsTable
     {
         return $table
             ->columns([
-                TextColumn::make('salary.id')
+                TextColumn::make('salary.employee.user.name')
                     ->label('Gaji')
                     ->searchable(),
-                TextColumn::make('salary_component_id')
+                TextColumn::make('component.name')
                     ->label('Komponen Gaji')
                     ->numeric()
                     ->sortable(),

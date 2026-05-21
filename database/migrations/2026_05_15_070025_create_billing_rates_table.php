@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('billing_component_id')->constrained('billing_components');
             $table->foreignId('study_program_id')->nullable()->constrained('study_programs')->nullOnDelete();
             $table->year('enrollment_year')->nullable();
-            $table->unsignedTinyInteger('ukt_group')->nullable();
+            $table->string('ukt_group', 20)->nullable();
             $table->decimal('amount', 12, 2);
             $table->date('effective_from')->nullable();
             $table->date('effective_to')->nullable();

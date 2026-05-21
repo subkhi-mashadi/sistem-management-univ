@@ -20,10 +20,10 @@ class RefundsTable
                 TextColumn::make('refund_number')
                     ->label('Nomor Refund')
                     ->searchable(),
-                TextColumn::make('payment.id')
+                TextColumn::make('payment.payment_number')
                     ->label('Pembayaran')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('amount')

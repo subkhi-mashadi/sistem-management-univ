@@ -14,13 +14,13 @@ class TeachingHonorsTable
     {
         return $table
             ->columns([
-                TextColumn::make('lecturer.id')
+                TextColumn::make('lecturer.user.name')
                     ->label('Dosen')
                     ->searchable(),
                 TextColumn::make('classSession.id')
                     ->label('Sesi Kelas')
                     ->searchable(),
-                TextColumn::make('payroll_period_id')
+                TextColumn::make('period.name')
                     ->label('Periode Payroll')
                     ->numeric()
                     ->sortable(),

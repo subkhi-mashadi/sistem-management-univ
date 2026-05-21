@@ -21,7 +21,7 @@ class FineForm
                     ->columns(2)->components([
                         Select::make('invoice_id')
                             ->label('Invoice')
-                            ->relationship('invoice', 'id')
+                            ->relationship('invoice', 'invoice_number')->searchable()->preload()
                             ->required(),
                         Select::make('type')
                             ->label('Tipe')

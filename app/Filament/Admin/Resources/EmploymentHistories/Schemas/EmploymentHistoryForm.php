@@ -21,7 +21,7 @@ class EmploymentHistoryForm
                     ->columns(2)->components([
                         Select::make('employee_id')
                             ->label('Pegawai')
-                            ->relationship('employee', 'id')
+                            ->relationship('employee', 'nip')->searchable()->preload()
                             ->required(),
                         Select::make('event_type')
                             ->label('Jenis Event')

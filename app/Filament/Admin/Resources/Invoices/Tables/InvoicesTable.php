@@ -20,7 +20,7 @@ class InvoicesTable
                 TextColumn::make('invoice_number')
                     ->label('Nomor Invoice')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('semester.name')

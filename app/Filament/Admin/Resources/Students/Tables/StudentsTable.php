@@ -26,15 +26,17 @@ class StudentsTable
                 TextColumn::make('studyProgram.name')
                     ->label('Program Studi')
                     ->searchable(),
-                TextColumn::make('curriculum.id')
+                TextColumn::make('curriculum.code')
                     ->label('Kurikulum')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('enrollment_year')
                     ->label('Tahun Masuk'),
-                TextColumn::make('academic_advisor_id')
+                TextColumn::make('advisor.user.name')
                     ->label('Dosen Wali')
-                    ->numeric()
-                    ->sortable(),
+                    ->searchable()
+                    ->sortable()
+                    ->placeholder('—'),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge(),

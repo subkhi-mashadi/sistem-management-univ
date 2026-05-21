@@ -24,7 +24,7 @@ class ThesisAdvisorForm
                             ->required(),
                         Select::make('lecturer_id')
                             ->label('Dosen')
-                            ->relationship('lecturer', 'id')
+                            ->relationship('lecturer', 'nidn')->searchable()->preload()
                             ->required(),
                         TextInput::make('advisor_order')
                             ->label('Urutan Pembimbing')

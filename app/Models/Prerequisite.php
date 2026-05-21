@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Concerns\HasAuditable;
-use App\Enums\Academic\LogicOperator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,14 +17,9 @@ class Prerequisite extends Model
         'course_id',
         'prerequisite_course_id',
         'minimum_grade',
-        'logic_operator',
         'group_no',
         'created_by',
         'updated_by',
-    ];
-
-    protected $casts = [
-        'logic_operator' => LogicOperator::class,
     ];
 
     public function getActivitylogOptions(): LogOptions

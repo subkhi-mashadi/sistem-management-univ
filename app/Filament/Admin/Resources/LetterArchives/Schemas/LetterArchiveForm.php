@@ -20,7 +20,7 @@ class LetterArchiveForm
                     ->columns(2)->components([
                         Select::make('letter_request_id')
                             ->label('Pengajuan Surat')
-                            ->relationship('letterRequest', 'id'),
+                            ->relationship('letterRequest', 'id')->searchable()->preload(),
                         TextInput::make('letter_number')
                             ->label('Nomor Surat')
                             ->required(),

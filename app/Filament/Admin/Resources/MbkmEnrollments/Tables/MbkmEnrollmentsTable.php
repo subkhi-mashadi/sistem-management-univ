@@ -14,11 +14,11 @@ class MbkmEnrollmentsTable
     {
         return $table
             ->columns([
-                TextColumn::make('mbkm_program_id')
+                TextColumn::make('program.name')
                     ->label('Program MBKM')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('semester.name')

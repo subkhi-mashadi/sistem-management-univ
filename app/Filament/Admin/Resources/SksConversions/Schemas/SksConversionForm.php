@@ -17,10 +17,10 @@ class SksConversionForm
                 Section::make('Informasi Utama')
                     ->columnSpanFull()
                     ->columns(2)->components([
-                        TextInput::make('mbkm_enrollment_id')
+                        Select::make('mbkm_enrollment_id')
                             ->label('Pendaftaran MBKM')
-                            ->required()
-                            ->numeric(),
+                            ->relationship('enrollment', 'id')->searchable()->preload()
+                            ->required(),
                         Select::make('course_id')
                             ->label('Mata Kuliah')
                             ->relationship('course', 'name')

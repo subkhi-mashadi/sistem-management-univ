@@ -19,7 +19,7 @@ class LecturerWorkloadForm
                     ->columns(2)->components([
                         Select::make('lecturer_id')
                             ->label('Dosen')
-                            ->relationship('lecturer', 'id')
+                            ->relationship('lecturer', 'nidn')->searchable()->preload()
                             ->required(),
                         Select::make('semester_id')
                             ->label('Semester')

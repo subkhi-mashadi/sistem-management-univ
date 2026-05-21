@@ -26,11 +26,11 @@ class LogbookForm
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Select::make('lecturer_id')
                             ->label('Dosen')
-                            ->relationship('lecturer', 'id')
+                            ->relationship('lecturer', 'nidn')->searchable()->preload()
                             ->required(),
                         DatePicker::make('session_date')
                             ->label('Tanggal Sesi')

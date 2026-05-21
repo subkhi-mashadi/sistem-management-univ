@@ -18,7 +18,7 @@ class CoursesTable
     {
         return $table
             ->columns([
-                TextColumn::make('curriculum.id')
+                TextColumn::make('curriculum.code')
                     ->label('Kurikulum')
                     ->searchable(),
                 TextColumn::make('code')
@@ -26,9 +26,6 @@ class CoursesTable
                     ->searchable(),
                 TextColumn::make('name')
                     ->label('Nama')
-                    ->searchable(),
-                TextColumn::make('name_en')
-                    ->label('Nama (EN)')
                     ->searchable(),
                 TextColumn::make('sks_theory')
                     ->label('SKS Teori')

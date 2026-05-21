@@ -14,7 +14,7 @@ class DiscountsTable
     {
         return $table
             ->columns([
-                TextColumn::make('invoice.id')
+                TextColumn::make('invoice.invoice_number')
                     ->label('Invoice')
                     ->searchable(),
                 TextColumn::make('code')

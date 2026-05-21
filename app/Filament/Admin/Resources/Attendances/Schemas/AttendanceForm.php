@@ -21,11 +21,11 @@ class AttendanceForm
                     ->columns(2)->components([
                         Select::make('class_session_id')
                             ->label('Sesi Kelas')
-                            ->relationship('classSession', 'id')
+                            ->relationship('classSession', 'id')->searchable()->preload()
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Select::make('status')
                             ->label('Status')

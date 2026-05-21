@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('nim')->unique();
             $table->foreignId('study_program_id')->constrained('study_programs')->restrictOnDelete();
             $table->foreignId('curriculum_id')->constrained('curriculums')->restrictOnDelete();
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('academic_advisor_id')->nullable()->constrained('lecturers')->nullOnDelete();
             $table->enum('status', StudentStatus::values())->default('Aktif');
             $table->enum('entry_path', EntryPath::values())->nullable();
-            $table->unsignedTinyInteger('ukt_group')->nullable();
+            $table->string('ukt_group', 20)->nullable();
             $table->enum('gender', Gender::values())->nullable();
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('parent_phone')->nullable();
             $table->string('religion')->nullable();
             $table->string('nationality')->nullable()->default('Indonesia');
-            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->index(['study_program_id', 'status', 'enrollment_year']);

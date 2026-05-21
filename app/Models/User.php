@@ -92,6 +92,28 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia
         return $this->is_active && $this->user_type === UserType::Admin;
     }
 
+    /**
+     * Derive user_type dari nama role (untuk filter/query cepat).
+     */
+    public static function deriveUserType(array $roleNames): ?UserType
+    {
+        if (in_array('Mahasiswa', $roleNames, true)) {
+            return UserType::Student;
+        }
+        if (in_array('Dosen', $roleNames, true)) {
+            return UserType::Lecturer;
+        }
+
+        $adminRoles = ['Super Admin', 'Rektor', 'Wakil Rektor', 'Dekan', 'Wakil Dekan', 'Kaprodi', 'Sekprodi', 'IT Admin'];
+        foreach ($adminRoles as $r) {
+            if (in_array($r, $roleNames, true)) {
+                return UserType::Admin;
+            }
+        }
+
+        return UserType::Staff;
+    }
+
     public function isLocked(): bool
     {
         return $this->locked_until !== null && $this->locked_until->isFuture();

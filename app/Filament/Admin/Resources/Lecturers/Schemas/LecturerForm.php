@@ -83,8 +83,7 @@ class LecturerForm
                         Select::make('structural_position')
                             ->label('Jabatan Struktural')
                             ->options(StructuralPosition::options())
-                            ->native(false)
-                            ->helperText('Pilih "Dekan" untuk menjadikan dosen ini bisa dipilih sebagai dekan fakultas.'),
+                            ->native(false),
                         Select::make('education_level')
                             ->label('Pendidikan')
                             ->options(EducationLevel::options())

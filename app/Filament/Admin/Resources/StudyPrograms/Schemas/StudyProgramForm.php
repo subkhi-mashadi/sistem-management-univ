@@ -4,6 +4,8 @@ namespace App\Filament\Admin\Resources\StudyPrograms\Schemas;
 
 use App\Enums\Academic\Accreditation;
 use App\Enums\Academic\DegreeLevel;
+use App\Models\Lecturer;
+use App\Models\StudyProgram;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -44,8 +46,24 @@ class StudyProgramForm
                         DatePicker::make('accreditation_valid_until')
                             ->label('Akreditasi Berlaku Hingga'),
                         Select::make('head_id')
-                            ->label('Ketua')
-                            ->relationship('head', 'name'),
+                            ->label('Ketua Prodi (Kaprodi)')
+                            ->options(function (?StudyProgram $record) {
+                                if (! $record) {
+                                    return [];
+                                }
+
+                                return Lecturer::query()
+                                    ->where('is_active', true)
+                                    ->where('study_program_id', $record->id)
+                                    ->with('user:id,full_name,name')
+                                    ->get()
+                                    ->mapWithKeys(fn (Lecturer $l) => [
+                                        $l->user_id => ($l->user?->full_name ?? $l->user?->name)
+                                    ])
+                                    ->all();
+                            })
+                            ->searchable()
+                            ->preload(),
                         Toggle::make('is_active')
                             ->label('Aktif')
                             ->required(),

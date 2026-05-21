@@ -22,7 +22,7 @@ class AttendanceRecordForm
                     ->columns(2)->components([
                         Select::make('employee_id')
                             ->label('Pegawai')
-                            ->relationship('employee', 'id')
+                            ->relationship('employee', 'nip')->searchable()->preload()
                             ->required(),
                         DatePicker::make('work_date')
                             ->label('Tanggal Kerja')

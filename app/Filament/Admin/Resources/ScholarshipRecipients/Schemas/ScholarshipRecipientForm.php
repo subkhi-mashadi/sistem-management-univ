@@ -25,7 +25,7 @@ class ScholarshipRecipientForm
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Select::make('semester_id')
                             ->label('Semester')

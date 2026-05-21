@@ -17,7 +17,7 @@ class ScholarshipRecipientsTable
                 TextColumn::make('scholarship.name')
                     ->label('Beasiswa')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('semester.name')

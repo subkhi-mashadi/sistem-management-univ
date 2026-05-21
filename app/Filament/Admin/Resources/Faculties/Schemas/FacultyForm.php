@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Faculties\Schemas;
 
-use App\Enums\Academic\StructuralPosition;
+use App\Models\Faculty;
 use App\Models\Lecturer;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -33,20 +33,23 @@ class FacultyForm
                             ->label('Kode PDDikti'),
                         Select::make('dean_id')
                             ->label('Dekan')
-                            ->options(function () {
+                            ->options(function (?Faculty $record) {
+                                if (! $record) {
+                                    return [];
+                                }
+
                                 return Lecturer::query()
                                     ->where('is_active', true)
-                                    ->where('structural_position', StructuralPosition::Dekan->value)
+                                    ->whereHas('studyProgram', fn ($q) => $q->where('faculty_id', $record->id))
                                     ->with('user:id,full_name,name')
                                     ->get()
                                     ->mapWithKeys(fn (Lecturer $l) => [
-                                        $l->user_id => $l->user?->full_name ?? $l->user?->name ?? "Dosen #{$l->id}",
+                                        $l->user_id => ($l->user?->full_name ?? $l->user?->name)
                                     ])
                                     ->all();
                             })
                             ->searchable()
-                            ->preload()
-                            ->helperText('Hanya menampilkan dosen dengan jabatan struktural "Dekan". Atur di menu Dosen.'),
+                            ->preload(),
                         Textarea::make('description')
                             ->label('Deskripsi')
                             ->rows(3)

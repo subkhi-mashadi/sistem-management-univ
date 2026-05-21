@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Models\Role;
 
 class WorkflowStep extends Model
 {
@@ -47,5 +48,10 @@ class WorkflowStep extends Model
     public function approverUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approver_user_id');
+    }
+
+    public function approverRole(): BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'approver_role_id');
     }
 }

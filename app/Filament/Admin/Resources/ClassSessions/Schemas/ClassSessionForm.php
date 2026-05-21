@@ -22,7 +22,7 @@ class ClassSessionForm
                     ->columns(2)->components([
                         Select::make('schedule_id')
                             ->label('Jadwal')
-                            ->relationship('schedule', 'id')
+                            ->relationship('schedule', 'id')->searchable()->preload()
                             ->required(),
                         TextInput::make('meeting_number')
                             ->label('Pertemuan Ke')
@@ -49,7 +49,7 @@ class ClassSessionForm
                             ->required(),
                         Select::make('substitute_lecturer_id')
                             ->label('Dosen Pengganti')
-                            ->relationship('substituteLecturer', 'id'),
+                            ->relationship('substituteLecturer', 'nidn')->searchable()->preload(),
                         Textarea::make('notes')
                             ->label('Catatan')
                             ->columnSpanFull(),

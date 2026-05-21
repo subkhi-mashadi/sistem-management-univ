@@ -14,7 +14,7 @@ class KrsItemsTable
     {
         return $table
             ->columns([
-                TextColumn::make('enrollment.id')
+                TextColumn::make('enrollment.student.user.name')
                     ->label('KRS')
                     ->searchable(),
                 TextColumn::make('courseOffering.id')

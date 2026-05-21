@@ -14,10 +14,10 @@ class InvoiceItemsTable
     {
         return $table
             ->columns([
-                TextColumn::make('invoice.id')
+                TextColumn::make('invoice.invoice_number')
                     ->label('Invoice')
                     ->searchable(),
-                TextColumn::make('billing_component_id')
+                TextColumn::make('component.name')
                     ->label('Komponen Tagihan')
                     ->numeric()
                     ->sortable(),

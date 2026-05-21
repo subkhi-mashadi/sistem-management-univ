@@ -20,7 +20,7 @@ class LetterRequestsTable
                 TextColumn::make('letter_number')
                     ->label('Nomor Surat')
                     ->searchable(),
-                TextColumn::make('letter_template_id')
+                TextColumn::make('template.name')
                     ->label('Template Surat')
                     ->numeric()
                     ->sortable(),
@@ -30,7 +30,7 @@ class LetterRequestsTable
                 TextColumn::make('requester.name')
                     ->label('Pengaju')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('currentStep.name')

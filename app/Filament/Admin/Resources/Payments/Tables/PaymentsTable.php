@@ -17,10 +17,10 @@ class PaymentsTable
                 TextColumn::make('payment_number')
                     ->label('Nomor Pembayaran')
                     ->searchable(),
-                TextColumn::make('invoice.id')
+                TextColumn::make('invoice.invoice_number')
                     ->label('Invoice')
                     ->searchable(),
-                TextColumn::make('student.id')
+                TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('amount')

@@ -20,14 +20,14 @@ class TeachingHonorForm
                     ->columns(2)->components([
                         Select::make('lecturer_id')
                             ->label('Dosen')
-                            ->relationship('lecturer', 'id')
+                            ->relationship('lecturer', 'nidn')->searchable()->preload()
                             ->required(),
                         Select::make('class_session_id')
                             ->label('Sesi Kelas')
-                            ->relationship('classSession', 'id'),
-                        TextInput::make('payroll_period_id')
+                            ->relationship('classSession', 'id')->searchable()->preload(),
+                        Select::make('payroll_period_id')
                             ->label('Periode Payroll')
-                            ->numeric(),
+                            ->relationship('period', 'name')->searchable()->preload(),
                         TextInput::make('rate_per_sks')
                             ->label('Rate per SKS')
                             ->required()

@@ -37,7 +37,7 @@ class StudyProgramsTable
                     ->label('Akreditasi')
                     ->badge(),
                 TextColumn::make('accreditation_valid_until')
-                    ->label('Akreditasi Berlaku Hingga')
+                    ->label('Hingga')
                     ->date()
                     ->sortable(),
                 TextColumn::make('head.name')

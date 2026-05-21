@@ -14,7 +14,7 @@ class SksConversionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('mbkm_enrollment_id')
+                TextColumn::make('enrollment.student.user.name')
                     ->label('Pendaftaran MBKM')
                     ->numeric()
                     ->sortable(),

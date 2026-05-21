@@ -17,7 +17,7 @@ class ApprovalsTable
                 TextColumn::make('letterRequest.id')
                     ->label('Pengajuan Surat')
                     ->searchable(),
-                TextColumn::make('workflow_step_id')
+                TextColumn::make('step.name')
                     ->label('Step Workflow')
                     ->numeric()
                     ->sortable(),

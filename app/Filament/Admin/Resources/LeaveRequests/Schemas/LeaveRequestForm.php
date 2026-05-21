@@ -23,7 +23,7 @@ class LeaveRequestForm
                     ->columns(2)->components([
                         Select::make('employee_id')
                             ->label('Pegawai')
-                            ->relationship('employee', 'id')
+                            ->relationship('employee', 'nip')->searchable()->preload()
                             ->required(),
                         Select::make('leave_type')
                             ->label('Jenis Cuti')

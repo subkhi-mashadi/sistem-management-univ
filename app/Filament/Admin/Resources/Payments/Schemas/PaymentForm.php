@@ -24,11 +24,11 @@ class PaymentForm
                             ->required(),
                         Select::make('invoice_id')
                             ->label('Invoice')
-                            ->relationship('invoice', 'id')
+                            ->relationship('invoice', 'invoice_number')->searchable()->preload()
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         TextInput::make('amount')
                             ->label('Jumlah')

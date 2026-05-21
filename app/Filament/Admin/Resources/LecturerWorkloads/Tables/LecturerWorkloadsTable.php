@@ -15,7 +15,7 @@ class LecturerWorkloadsTable
     {
         return $table
             ->columns([
-                TextColumn::make('lecturer.id')
+                TextColumn::make('lecturer.user.name')
                     ->label('Dosen')
                     ->searchable(),
                 TextColumn::make('semester.name')

@@ -21,11 +21,11 @@ class GradeAppealForm
                     ->columns(2)->components([
                         Select::make('grade_id')
                             ->label('Nilai')
-                            ->relationship('grade', 'id')
+                            ->relationship('grade', 'id')->searchable()->preload()
                             ->required(),
                         Select::make('student_id')
                             ->label('Mahasiswa')
-                            ->relationship('student', 'id')
+                            ->relationship('student', 'nim')->searchable()->preload()
                             ->required(),
                         Textarea::make('reason')
                             ->label('Alasan')

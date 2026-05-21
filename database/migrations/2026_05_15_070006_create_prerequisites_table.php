@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Academic\LogicOperator;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +13,6 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->foreignId('prerequisite_course_id')->constrained('courses')->cascadeOnDelete();
             $table->string('minimum_grade', 2)->nullable();
-            $table->enum('logic_operator', LogicOperator::values())->default('AND');
             $table->unsignedTinyInteger('group_no')->default(1);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();

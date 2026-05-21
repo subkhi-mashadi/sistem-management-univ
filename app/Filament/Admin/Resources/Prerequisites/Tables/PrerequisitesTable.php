@@ -22,13 +22,12 @@ class PrerequisitesTable
                     ->searchable(),
                 TextColumn::make('minimum_grade')
                     ->label('Nilai Minimum')
+                    ->badge()
                     ->searchable(),
-                TextColumn::make('logic_operator')
-                    ->label('Operator')
-                    ->badge(),
                 TextColumn::make('group_no')
                     ->label('Grup')
-                    ->numeric()
+                    ->formatStateUsing(fn ($state) => 'Grup '.$state)
+                    ->badge()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Dibuat')
