@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\CourseOfferings\Tables;
 
+use App\Models\Lecturer;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -27,6 +28,21 @@ class CourseOfferingsTable
                 TextColumn::make('class_code')
                     ->label('Kelas')
                     ->searchable(),
+                TextColumn::make('lecturer_ids')
+                    ->label('Dosen Pengampu')
+                    ->getStateUsing(function ($record): string {
+                        $ids = $record->lecturer_ids ?? [];
+                        if (empty($ids)) {
+                            return '—';
+                        }
+
+                        return Lecturer::whereIn('id', $ids)
+                            ->with('user:id,full_name,name')
+                            ->get()
+                            ->map(fn (Lecturer $l) => $l->user?->full_name ?? $l->user?->name ?? "#{$l->id}")
+                            ->join(', ');
+                    })
+                    ->wrap(),
                 TextColumn::make('quota')
                     ->label('Kuota')
                     ->numeric()
