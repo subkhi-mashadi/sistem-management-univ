@@ -40,6 +40,22 @@ class Payment extends Model
         'raw_payload' => 'array',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $payment) {
+            if (empty($payment->student_id) && $payment->invoice_id) {
+                $payment->student_id = Invoice::where('id', $payment->invoice_id)->value('student_id');
+            }
+
+            $statusValue = $payment->status instanceof PaymentStatus
+                ? $payment->status->value
+                : $payment->status;
+            if ($statusValue === PaymentStatus::Success->value && empty($payment->reconciled_at)) {
+                $payment->reconciled_at = now();
+            }
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

@@ -38,6 +38,19 @@ class Scholarship extends Model
         'is_active' => 'boolean',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $scholarship) {
+            $coverageType = $scholarship->coverage_type instanceof CoverageType
+                ? $scholarship->coverage_type->value
+                : $scholarship->coverage_type;
+
+            if ($coverageType === CoverageType::Full->value) {
+                $scholarship->coverage_value = 100;
+            }
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

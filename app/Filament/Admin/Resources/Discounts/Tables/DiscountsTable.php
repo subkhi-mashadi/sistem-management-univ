@@ -27,9 +27,10 @@ class DiscountsTable
                     ->label('Jumlah')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('approved_by')
+                TextColumn::make('approver.full_name')
                     ->label('Disetujui Oleh')
-                    ->numeric()
+                    ->default(fn ($record) => $record->approver?->name)
+                    ->placeholder('—')
                     ->sortable(),
                 TextColumn::make('approved_at')
                     ->label('Tanggal Disetujui')

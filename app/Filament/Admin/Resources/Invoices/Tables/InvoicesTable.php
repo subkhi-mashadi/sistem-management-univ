@@ -2,12 +2,14 @@
 
 namespace App\Filament\Admin\Resources\Invoices\Tables;
 
+use App\Enums\Finance\InvoiceStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -16,81 +18,64 @@ class InvoicesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('invoice_number')
-                    ->label('Nomor Invoice')
+                    ->label('No. Invoice')
+                    ->searchable()
+                    ->sortable()
+                    ->copyable(),
+                TextColumn::make('student.nim')
+                    ->label('NIM')
                     ->searchable(),
                 TextColumn::make('student.user.name')
                     ->label('Mahasiswa')
                     ->searchable(),
                 TextColumn::make('semester.name')
                     ->label('Semester')
-                    ->searchable(),
-                TextColumn::make('virtual_account')
-                    ->label('Virtual Account')
-                    ->searchable(),
-                TextColumn::make('bank_code')
-                    ->label('Kode Bank')
-                    ->searchable(),
-                TextColumn::make('issue_date')
-                    ->label('Tanggal Terbit')
-                    ->date()
+                    ->badge(),
+                TextColumn::make('total_amount')
+                    ->label('Total')
+                    ->money('IDR')
                     ->sortable(),
+                TextColumn::make('paid_amount')
+                    ->label('Dibayar')
+                    ->money('IDR')
+                    ->sortable(),
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn ($state) => match ($state instanceof InvoiceStatus ? $state->value : $state) {
+                        'Paid' => 'success',
+                        'Partial' => 'warning',
+                        'Overdue' => 'danger',
+                        'Cancelled' => 'gray',
+                        default => 'info',
+                    }),
                 TextColumn::make('due_date')
                     ->label('Jatuh Tempo')
                     ->date()
                     ->sortable(),
-                TextColumn::make('subtotal')
-                    ->label('Subtotal')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('discount_amount')
-                    ->label('Diskon')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('fine_amount')
-                    ->label('Denda')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('scholarship_amount')
-                    ->label('Beasiswa')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('total_amount')
-                    ->label('Total')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('paid_amount')
-                    ->label('Sudah Dibayar')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('status')
-                    ->label('Status')
-                    ->badge(),
+                TextColumn::make('virtual_account')
+                    ->label('VA')
+                    ->copyable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('installment_plan')
-                    ->label('Skema Cicilan')
-                    ->badge(),
-                TextColumn::make('deleted_at')
-                    ->label('Dihapus')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->label('Dibuat')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->label('Diperbarui')
-                    ->dateTime()
-                    ->sortable()
+                    ->label('Cicilan')
+                    ->badge()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('semester_id')
+                    ->label('Semester')
+                    ->relationship('semester', 'name'),
+                SelectFilter::make('status')
+                    ->label('Status')
+                    ->options(InvoiceStatus::class),
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->label('Lihat / Edit'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

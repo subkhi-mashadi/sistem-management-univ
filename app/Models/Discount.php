@@ -28,6 +28,34 @@ class Discount extends Model
         'approved_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $discount) {
+            if (empty($discount->code)) {
+                $discount->code = self::generateCode();
+            }
+            // Saat dibuat dengan amount > 0, anggap auto-approved oleh user pembuat.
+            if (empty($discount->approved_by) && auth()->check()) {
+                $discount->approved_by = auth()->id();
+            }
+            if (empty($discount->approved_at)) {
+                $discount->approved_at = now();
+            }
+        });
+    }
+
+    public static function generateCode(): string
+    {
+        $prefix = 'DSK-'.now()->format('Ym').'-';
+        $lastSeq = (int) self::query()
+            ->where('code', 'like', $prefix.'%')
+            ->get()
+            ->map(fn (self $d) => (int) substr($d->code, strrpos($d->code, '-') + 1))
+            ->max();
+
+        return $prefix.str_pad((string) ($lastSeq + 1), 4, '0', STR_PAD_LEFT);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

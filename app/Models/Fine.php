@@ -33,6 +33,25 @@ class Fine extends Model
         'waived_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $fine) {
+            // Saat di-toggle waived = true → otomatis isi waived_by + waived_at.
+            if ($fine->waived && empty($fine->waived_at)) {
+                $fine->waived_at = now();
+                if (empty($fine->waived_by) && auth()->check()) {
+                    $fine->waived_by = auth()->id();
+                }
+            }
+            // Saat waived dimatikan → clear timestamp & approver.
+            if (! $fine->waived) {
+                $fine->waived_at = null;
+                $fine->waived_by = null;
+                $fine->waive_reason = null;
+            }
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
