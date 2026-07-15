@@ -3,7 +3,7 @@
 namespace App\Filament\Admin\Resources\KrsItems\Schemas;
 
 use App\Enums\Krs\KrsItemStatus;
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -30,7 +30,7 @@ class KrsItemForm
                             ->options(KrsItemStatus::class)
                             ->default('Active')
                             ->required(),
-                        DateTimePicker::make('dropped_at')
+                        DatePicker::make('dropped_at')
                             ->label('Tanggal Drop'),
                     ]),
             ]);

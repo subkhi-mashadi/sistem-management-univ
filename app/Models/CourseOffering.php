@@ -56,4 +56,14 @@ class CourseOffering extends Model
     {
         return $this->hasMany(ExamSchedule::class);
     }
+
+    public function grades(): HasMany
+    {
+        return $this->hasMany(Grade::class);
+    }
+
+    public function krsItems(): HasMany
+    {
+        return $this->hasMany(KrsItem::class);
+    }
 }

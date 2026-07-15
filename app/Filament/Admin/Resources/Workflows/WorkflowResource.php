@@ -20,7 +20,7 @@ class WorkflowResource extends Resource
 {
     protected static ?string $model = Workflow::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'E-Office';
+    protected static string|\UnitEnum|null $navigationGroup = 'E-Office (Lanjutan)';
 
     protected static ?string $navigationLabel = 'Workflow';
 

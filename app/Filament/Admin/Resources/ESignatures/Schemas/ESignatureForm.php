@@ -2,11 +2,8 @@
 
 namespace App\Filament\Admin\Resources\ESignatures\Schemas;
 
-use App\Enums\EOffice\SignatureProvider;
-use Filament\Forms\Components\DateTimePicker;
+use App\Filament\Forms\Components\SignaturePad;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -17,29 +14,20 @@ class ESignatureForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Utama')
+                Section::make('Tanda Tangan')
                     ->columnSpanFull()
-                    ->columns(2)->components([
+                    ->columns(1)->components([
                         Select::make('user_id')
                             ->label('Pengguna')
                             ->relationship('user', 'name')
+                            ->searchable()
+                            ->preload()
                             ->required(),
-                        Select::make('provider')
-                            ->label('Provider')
-                            ->options(SignatureProvider::class)
-                            ->default('BSrE')
-                            ->required(),
-                        Textarea::make('certificate_data')
-                            ->label('Data Sertifikat')
-                            ->columnSpanFull(),
-                        TextInput::make('certificate_serial')
-                            ->label('Serial Sertifikat'),
-                        DateTimePicker::make('valid_from')
-                            ->label('Berlaku Dari'),
-                        DateTimePicker::make('valid_until')
-                            ->label('Berlaku Hingga'),
+                        SignaturePad::make('signature_data')
+                            ->label('Tanda Tangan'),
                         Toggle::make('is_active')
                             ->label('Aktif')
+                            ->default(true)
                             ->required(),
                     ]),
             ]);

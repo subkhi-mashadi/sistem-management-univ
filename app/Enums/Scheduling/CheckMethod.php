@@ -12,4 +12,5 @@ enum CheckMethod: string
     case Fingerprint = 'Fingerprint';
     case Face = 'Face';
     case Manual = 'Manual';
+    case Token = 'Token';
 }

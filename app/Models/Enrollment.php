@@ -34,6 +34,30 @@ class Enrollment extends Model
         'approved_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $enrollment) {
+            $status = $enrollment->status instanceof EnrollmentStatus
+                ? $enrollment->status->value
+                : $enrollment->status;
+
+            // Saat status berubah ke Approved → auto-set approved_by + approved_at.
+            if ($status === EnrollmentStatus::Approved->value) {
+                if (empty($enrollment->approved_at)) {
+                    $enrollment->approved_at = now();
+                }
+                if (empty($enrollment->approved_by) && auth()->check()) {
+                    $enrollment->approved_by = auth()->id();
+                }
+            }
+
+            if (in_array($status, [EnrollmentStatus::Draft->value, EnrollmentStatus::Rejected->value], true)) {
+                $enrollment->approved_at = null;
+                $enrollment->approved_by = null;
+            }
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll()->logOnlyDirty()->dontSubmitEmptyLogs()->useLogName('enrollments');

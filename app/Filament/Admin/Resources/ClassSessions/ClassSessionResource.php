@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\ClassSessions;
 use App\Filament\Admin\Resources\ClassSessions\Pages\CreateClassSession;
 use App\Filament\Admin\Resources\ClassSessions\Pages\EditClassSession;
 use App\Filament\Admin\Resources\ClassSessions\Pages\ListClassSessions;
+use App\Filament\Admin\Resources\ClassSessions\RelationManagers\AttendancesRelationManager;
 use App\Filament\Admin\Resources\ClassSessions\Schemas\ClassSessionForm;
 use App\Filament\Admin\Resources\ClassSessions\Tables\ClassSessionsTable;
 use App\Models\ClassSession;
@@ -43,7 +44,7 @@ class ClassSessionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AttendancesRelationManager::class,
         ];
     }
 

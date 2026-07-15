@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Enrollments;
 use App\Filament\Admin\Resources\Enrollments\Pages\CreateEnrollment;
 use App\Filament\Admin\Resources\Enrollments\Pages\EditEnrollment;
 use App\Filament\Admin\Resources\Enrollments\Pages\ListEnrollments;
+use App\Filament\Admin\Resources\Enrollments\RelationManagers\KrsItemsRelationManager;
 use App\Filament\Admin\Resources\Enrollments\Schemas\EnrollmentForm;
 use App\Filament\Admin\Resources\Enrollments\Tables\EnrollmentsTable;
 use App\Models\Enrollment;
@@ -45,7 +46,7 @@ class EnrollmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            KrsItemsRelationManager::class,
         ];
     }
 

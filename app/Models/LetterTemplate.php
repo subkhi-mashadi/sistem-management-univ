@@ -21,6 +21,9 @@ class LetterTemplate extends Model
         'name',
         'category',
         'body',
+        'closing_text',
+        'data_fields',
+        'custom_fields',
         'numbering_pattern',
         'requires_signature',
         'default_workflow_id',
@@ -31,6 +34,8 @@ class LetterTemplate extends Model
 
     protected $casts = [
         'category' => LetterCategory::class,
+        'data_fields' => 'array',
+        'custom_fields' => 'array',
         'requires_signature' => 'boolean',
         'is_active' => 'boolean',
     ];

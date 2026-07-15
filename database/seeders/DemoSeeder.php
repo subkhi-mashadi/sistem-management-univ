@@ -27,6 +27,7 @@ class DemoSeeder extends Seeder
             DemoStudentSeeder::class,            // Mahasiswa (butuh Prodi, Kurikulum, Dosen, UKT)
             DemoCourseOfferingSeeder::class,     // Penawaran MK + Jadwal (butuh MK, Semester, Dosen, Ruangan)
             DemoFinanceSeeder::class,            // Komponen + Tarif + Invoice masal (butuh Semester aktif, Mahasiswa, UKT)
+            DemoLetterSeeder::class,             // E-Office: Workflow + Template + contoh Pengajuan Surat (butuh role Kaprodi, Mahasiswa+Wali)
         ]);
 
         $this->command->info('');

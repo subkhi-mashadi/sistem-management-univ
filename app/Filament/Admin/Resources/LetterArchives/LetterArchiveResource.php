@@ -30,6 +30,16 @@ class LetterArchiveResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
 
+    /**
+     * Arsip dibuat otomatis tiap surat Issued (buat pencarian internal via searchable_text),
+     * tapi redundan sama Pengajuan Surat yang sudah bisa difilter status=Issued + download PDF.
+     * Menu disembunyikan dari nav; resource tetap ada kalau suatu saat perlu diakses langsung.
+     */
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return LetterArchiveForm::configure($schema);

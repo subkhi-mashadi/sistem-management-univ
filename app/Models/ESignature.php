@@ -17,6 +17,7 @@ class ESignature extends Model
 
     protected $fillable = [
         'user_id',
+        'image_path',
         'provider',
         'certificate_data',
         'certificate_serial',
