@@ -32,7 +32,7 @@ class ThesisAdvisorResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return ThesisAdvisorForm::configure($schema);
+        return ThesisAdvisorForm::configureEdit($schema);
     }
 
     public static function table(Table $table): Table

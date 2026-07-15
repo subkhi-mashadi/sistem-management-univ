@@ -1,76 +1,36 @@
 <?php
 
-namespace App\Filament\Admin\Resources\ThesisTopics\Tables;
+namespace App\Filament\Lecturer\Resources\ThesisAdvisees\Tables;
 
 use App\Enums\Thesis\ThesisTopicStatus;
 use App\Models\ThesisTopic;
 use App\Services\Thesis\ThesisTopicService;
 use Filament\Actions\Action;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Throwable;
 
-class ThesisTopicsTable
+class ThesisAdviseesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('student.user.name')
-                    ->label('Mahasiswa')
-                    ->searchable(),
-                TextColumn::make('title')
-                    ->label('Judul')
-                    ->searchable()
-                    ->wrap(),
-                TextColumn::make('research_field')
-                    ->label('Bidang Penelitian')
-                    ->searchable(),
+                TextColumn::make('student.user.name')->label('Mahasiswa')->searchable(),
+                TextColumn::make('student.nim')->label('NIM')->searchable(),
+                TextColumn::make('title')->label('Judul')->wrap()->searchable(),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
                     ->color(fn ($state) => match ($state instanceof ThesisTopicStatus ? $state->value : $state) {
-                        'Draft' => 'gray',
-                        'Submitted', 'Under Review' => 'warning',
                         'Approved' => 'success',
                         'Rejected' => 'danger',
-                        'Revision' => 'warning',
+                        'Revision', 'Submitted', 'Under Review' => 'warning',
                         default => 'gray',
                     }),
-                TextColumn::make('review_notes')
-                    ->label('Catatan Review')
-                    ->limit(40)
-                    ->placeholder('—'),
-                TextColumn::make('approved_at')
-                    ->label('Tanggal Disetujui')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('deleted_at')
-                    ->label('Dihapus')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->label('Dibuat')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->label('Diperbarui')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                TrashedFilter::make(),
             ])
             ->recordActions([
                 Action::make('approve')
@@ -121,14 +81,7 @@ class ThesisTopicsTable
                             Notification::make()->title('Gagal')->body($e->getMessage())->danger()->send();
                         }
                     }),
-                EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
+                ViewAction::make(),
             ]);
     }
 }

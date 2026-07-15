@@ -25,6 +25,7 @@ class ThesisTopic extends Model
         'research_field',
         'similarity_score',
         'status',
+        'review_notes',
         'approved_by',
         'approved_at',
         'created_by',

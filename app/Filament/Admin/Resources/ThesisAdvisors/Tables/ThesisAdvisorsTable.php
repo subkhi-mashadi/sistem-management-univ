@@ -2,10 +2,12 @@
 
 namespace App\Filament\Admin\Resources\ThesisAdvisors\Tables;
 
+use App\Enums\Thesis\ThesisAdvisorStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ThesisAdvisorsTable
@@ -14,23 +16,29 @@ class ThesisAdvisorsTable
     {
         return $table
             ->columns([
+                TextColumn::make('thesisTopic.student.user.name')
+                    ->label('Mahasiswa')
+                    ->searchable(),
                 TextColumn::make('thesisTopic.title')
-                    ->label('Topik Skripsi')
+                    ->label('Judul Skripsi')
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('lecturer.user.name')
-                    ->label('Dosen')
+                    ->label('Dosen Pembimbing')
                     ->searchable(),
-                TextColumn::make('advisor_order')
-                    ->label('Urutan Pembimbing')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('assigned_at')
                     ->label('Ditugaskan')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('status')
                     ->label('Status')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn ($state) => match ($state instanceof ThesisAdvisorStatus ? $state->value : $state) {
+                        'Active' => 'success',
+                        'Completed' => 'info',
+                        'Replaced' => 'gray',
+                        default => 'gray',
+                    }),
                 TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime()
@@ -43,10 +51,12 @@ class ThesisAdvisorsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')
+                    ->label('Status Bimbingan')
+                    ->options(ThesisAdvisorStatus::class),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->label('Ubah Status'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

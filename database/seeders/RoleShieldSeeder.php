@@ -161,7 +161,8 @@ class RoleShieldSeeder extends Seeder
             $this->build(['ThesisTopic', 'Logbook', 'ThesisAdvisor', 'ThesisDefense'], self::SUBMIT),
             $this->build(['MbkmEnrollment', 'SksConversion'], self::SUBMIT),
             $this->build(['GradeAppeal'], self::SUBMIT),
-            $this->build(['Scholarship', 'ScholarshipRecipient'], self::VIEW),
+            $this->build(['Scholarship'], self::VIEW),
+            $this->build(['ScholarshipRecipient'], self::SUBMIT),
             $this->build(['Announcement', 'ErpNotification'], self::VIEW),
         );
 

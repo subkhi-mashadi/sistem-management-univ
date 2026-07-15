@@ -82,4 +82,14 @@ class Student extends Model
     {
         return $this->hasMany(Invoice::class);
     }
+
+    public function scholarshipRecipients(): HasMany
+    {
+        return $this->hasMany(ScholarshipRecipient::class);
+    }
+
+    public function thesisTopics(): HasMany
+    {
+        return $this->hasMany(ThesisTopic::class);
+    }
 }

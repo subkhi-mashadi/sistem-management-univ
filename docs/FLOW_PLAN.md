@@ -22,7 +22,9 @@
 | 9 | KRS | ✅ DONE | StudentPanel + LecturerPanel + KrsItemObserver + validasi tunggakan/prereq/jadwal |
 | 10 | Perkuliahan Aktif (Sesi, Presensi, Nilai) | ✅ DONE | Generate 14 sesi, bulk presensi, bulk nilai + auto letter_grade, Lock → Transcript auto-recalc |
 | 11 | Layanan — E-Office (Surat) | ✅ DONE | LetterWorkflowService (submit/approve/reject) + LetterIssuanceService (PDF+QR) + public verify route + Student/Lecturer/Admin panel actions |
-| 11 | Layanan — Beasiswa, Skripsi, MBKM, Riset, Komunikasi | ⏳ TODO | Model+CRUD resource ada, business logic belum |
+| 11 | Layanan — Beasiswa | ✅ DONE | ScholarshipApplicationService (apply/approve/reject) + granted_amount auto-hitung dari coverage + Student panel pengajuan + Admin approve/reject |
+| 11 | Layanan — Skripsi (Topik & Logbook) | ✅ DONE | ThesisTopicService (submit/approve/reject/revisi) + LogbookService (create/verify) + Student/Lecturer panel |
+| 11 | Layanan — MBKM, Riset, Komunikasi | ⏳ TODO | Model+CRUD resource ada, business logic belum |
 | 12 | HRIS Operasional (Payroll, Honor, Pajak) | ⏳ TODO | — |
 
 ---

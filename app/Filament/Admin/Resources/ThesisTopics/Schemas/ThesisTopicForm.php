@@ -2,8 +2,8 @@
 
 namespace App\Filament\Admin\Resources\ThesisTopics\Schemas;
 
-use App\Enums\Thesis\ThesisTopicStatus;
-use Filament\Forms\Components\DateTimePicker;
+use App\Models\ThesisTopic;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -22,32 +22,46 @@ class ThesisTopicForm
                         Select::make('student_id')
                             ->label('Mahasiswa')
                             ->relationship('student', 'nim')->searchable()->preload()
-                            ->required(),
+                            ->required()
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
                         TextInput::make('title')
                             ->label('Judul')
-                            ->required(),
+                            ->required()
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
                         TextInput::make('title_en')
-                            ->label('Judul (EN)'),
+                            ->label('Judul (EN)')
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
                         Textarea::make('abstract')
                             ->label('Abstrak')
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->rows(8)
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
                         TextInput::make('keywords')
-                            ->label('Kata Kunci'),
+                            ->label('Kata Kunci')
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
                         TextInput::make('research_field')
-                            ->label('Bidang Penelitian'),
-                        TextInput::make('similarity_score')
-                            ->label('Skor Kemiripan')
-                            ->numeric(),
-                        Select::make('status')
+                            ->label('Bidang Penelitian')
+                            ->disabled(fn (?ThesisTopic $record) => $record !== null),
+                    ]),
+
+                Section::make('Status Review')
+                    ->columnSpanFull()
+                    ->columns(2)
+                    ->visible(fn (?ThesisTopic $record) => $record !== null)
+                    ->components([
+                        Placeholder::make('status_display')
                             ->label('Status')
-                            ->options(ThesisTopicStatus::class)
-                            ->default('Draft')
-                            ->required(),
-                        TextInput::make('approved_by')
+                            ->content(fn (?ThesisTopic $record) => $record?->status?->value ?? '—'),
+                        Placeholder::make('approver_display')
                             ->label('Disetujui Oleh')
-                            ->numeric(),
-                        DateTimePicker::make('approved_at')
-                            ->label('Tanggal Disetujui'),
+                            ->content(fn (?ThesisTopic $record) => $record?->approver?->name ?? '—'),
+                        Placeholder::make('approved_at_display')
+                            ->label('Tanggal Disetujui')
+                            ->content(fn (?ThesisTopic $record) => $record?->approved_at?->format('d M Y H:i') ?? '—'),
+                        Textarea::make('review_notes')
+                            ->label('Catatan Review')
+                            ->helperText('Silahkan tulis catatan review jika menolak topik skripsi ini.')
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
